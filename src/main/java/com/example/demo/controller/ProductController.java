@@ -46,6 +46,15 @@ public class ProductController {
     }
 
     /**
+     * GET /api/products/search?keyword={keyword}
+     * Returns matching products based on name (case-insensitive).
+     */
+    @GetMapping("/search")
+    public ResponseEntity<List<Product>> searchProducts(@RequestParam String keyword) {
+        return ResponseEntity.ok(service.searchByName(keyword));
+    }
+
+    /**
      * GET /api/products/{id}
      * Return the product with status 200, or 404 if not found.
      */
@@ -89,5 +98,14 @@ public class ProductController {
         } else {
             return ResponseEntity.notFound().build(); // 404
         }
+    }
+
+    /**
+     * GET /api/products/category/{category}
+     * Returns products matching the specified category (case-insensitive).
+     */
+    @GetMapping("/category/{category}")
+    public ResponseEntity<List<Product>> getProductsByCategory(@PathVariable String category) {
+        return ResponseEntity.ok(service.getProductsByCategory(category));
     }
 }

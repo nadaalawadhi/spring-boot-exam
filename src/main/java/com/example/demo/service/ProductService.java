@@ -95,4 +95,18 @@ public class ProductService {
         }
         return  false;
     }
+
+    /**
+     * Search products by name (case-insensitive keyword).
+     */
+    public List<Product> searchByName(String keyword) {
+        return repository.findByNameContaining(keyword);
+    }
+
+    /**
+     * Filter products by category (case-insensitive).
+     */
+    public List<Product> getProductsByCategory(String category) {
+        return repository.findByCategory(category);
+    }
 }

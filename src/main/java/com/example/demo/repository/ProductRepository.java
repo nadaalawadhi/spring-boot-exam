@@ -93,4 +93,36 @@ public class ProductRepository {
         // TODO: Return true if a product with this ID exists in the list
         return products.stream().anyMatch(product -> product.getId().equals(id));
     }
+
+    /**
+     * findByNameContaining(String keyword)
+     * Returns products whose name contains the keyword (case-insensitive).
+     */
+    public List<Product> findByNameContaining(String keyword) {
+        List<Product> results = new ArrayList<>();
+        String lowerKeyword = keyword.toLowerCase();
+
+        for (Product p : products) {
+            if (p.getName() != null && p.getName().toLowerCase().contains(lowerKeyword)) {
+                results.add(p);
+            }
+        }
+        return results;
+    }
+
+    /**
+     * findByCategory(String category)
+     * Returns products matching the category (case-insensitive).
+     */
+    public List<Product> findByCategory(String category) {
+        List<Product> results = new ArrayList<>();
+        String lowerCategory = category.toLowerCase();
+
+        for (Product p : products) {
+            if (p.getCategory() != null && p.getCategory().toLowerCase().equals(lowerCategory)) {
+                results.add(p);
+            }
+        }
+        return results;
+    }
 }

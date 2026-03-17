@@ -21,6 +21,7 @@ To start the application, navigate to the project root in your terminal and run:
 | DELETE | `/api/products/{id}` | Remove product from inventory | 204 No Content, 404 Not Found |
 
 ### curl Examples
+open a new Command Prompt and run the following
 #### Create a Product:
 ```bash
 curl -X POST http://localhost:8080/api/products -H "Content-Type: application/json" -d "{\"name\":\"Uno\",\"category\":\"Toy\",\"price\":9.99,\"quantity\":50}" -v
@@ -45,10 +46,23 @@ curl -X GET http://Localhost:8080/api/products/5 -v
 ```bash
 curl -X PUT http://localhost:8080/api/products/1 -H "Content-Type: application/json" -d "{\"name\":\"Uno\",\"category\":\"Toy\",\"price\":9.95,\"quantity\":50}" -v
 ```
+
 #### Delete a Product:
 ```bash
 curl -X DELETE http://Localhost:8080/api/products/1 -v
 ```
+
+#### Search a Product by Keyword:
+```bash
+curl -X GET "http://localhost:8080/api/products/search?keyword=Uno" -v
+```
+
+#### Find Products by Category:
+```bash
+curl -X GET "http://localhost:8080/api/products/category/Toy" -v
+```
+
+
 ### Sample Responses
 #### Create a Product:
 ```bash
